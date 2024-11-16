@@ -10,7 +10,7 @@ class IrisDataloader(Dataset):
 
         assert os.path.exists(self.data_path), "dataset does not exists"
 
-        df = pd.read_csv(self.data_path, name = [0, 1, 2, 3, 4])
+        df = pd.read_csv(self.data_path, names=[0, 1, 2, 3, 4])
 
         d = {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}
         df[4] = df[4].map(d)
@@ -20,8 +20,8 @@ class IrisDataloader(Dataset):
 
         data = (data - np.mean(data) / np.std(data))    # Z值化
 
-        self.data = torch.from_numpy(np.array(data, dtype = 'float32'))
-        self.label = torch.from_numpy(np.array(label, dtype = 'int64'))
+        self.data = torch.from_numpy(np.array(data, dtype='float32'))
+        self.label = torch.from_numpy(np.array(label, dtype='int64'))
 
         self.data_num = len(label)
         print("当前数据集的大小：", self.data_num)
